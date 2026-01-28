@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
-import { TrendingUp, TrendingDown } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { TrendingUp, TrendingDown } from "lucide-react";
 
 interface KPIData {
-  id: string
-  title: string
-  value: string
-  unit?: string
-  change: number
-  changeLabel: string
-  target: number
-  status: "success" | "warning" | "danger"
-  gauge?: number
+  id: string;
+  title: string;
+  value: string;
+  unit?: string;
+  change: number;
+  changeLabel: string;
+  target: number;
+  status: "success" | "warning" | "danger";
+  gauge?: number;
 }
 
 const kpiData: KPIData[] = [
@@ -60,10 +60,15 @@ const kpiData: KPIData[] = [
     status: "success",
     gauge: 76,
   },
-]
+];
 
 function GaugeChartMini({ value, status }: { value: number; status: string }) {
-  const colorClass = status === "success" ? "#0DCA61" : status === "warning" ? "#FD6221" : "#DB1F51"
+  const colorClass =
+    status === "success"
+      ? "#0DCA61"
+      : status === "warning"
+      ? "#FD6221"
+      : "#DB1F51";
 
   return (
     <div className="relative w-16 h-10">
@@ -85,7 +90,7 @@ function GaugeChartMini({ value, status }: { value: number; status: string }) {
         />
       </svg>
     </div>
-  )
+  );
 }
 
 function StatusBadge({ status }: { status: "success" | "warning" | "danger" }) {
@@ -93,13 +98,16 @@ function StatusBadge({ status }: { status: "success" | "warning" | "danger" }) {
     success: { label: "Cumple", className: "bg-green-100 text-green-700" },
     warning: { label: "Moderado", className: "bg-yellow-100 text-yellow-700" },
     danger: { label: "Crítico", className: "bg-red-100 text-red-700" },
-  }
+  };
 
   return (
-    <Badge variant="secondary" className={cn("text-[10px] px-1.5 py-0", config[status].className)}>
+    <Badge
+      variant="secondary"
+      className={cn("text-[10px] px-1.5 py-0", config[status].className)}
+    >
       {config[status].label}
     </Badge>
-  )
+  );
 }
 
 export function KPICardsCompact() {
@@ -109,7 +117,9 @@ export function KPICardsCompact() {
         <Card key={kpi.id} className="border-0 shadow-sm bg-card">
           <CardContent className="p-3">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs font-medium text-muted-foreground">{kpi.title}</span>
+              <span className="text-xs font-medium text-muted-foreground">
+                {kpi.title}
+              </span>
               <Badge
                 variant="secondary"
                 className={cn(
@@ -119,8 +129,8 @@ export function KPICardsCompact() {
                       ? "bg-green-100 text-green-700"
                       : "bg-yellow-100 text-yellow-700"
                     : kpi.status === "success"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-red-100 text-red-700"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
                 )}
               >
                 {kpi.change > 0 ? (
@@ -132,11 +142,17 @@ export function KPICardsCompact() {
               </Badge>
             </div>
             <div className="flex items-center gap-2">
-              {kpi.gauge && <GaugeChartMini value={kpi.gauge} status={kpi.status} />}
+              {kpi.gauge && (
+                <GaugeChartMini value={kpi.gauge} status={kpi.status} />
+              )}
               <div className="flex flex-col">
                 <div className="flex items-baseline gap-0.5">
-                  <span className="text-2xl font-bold text-foreground">{kpi.value}</span>
-                  <span className="text-sm text-muted-foreground">{kpi.unit}</span>
+                  <span className="text-2xl font-bold text-foreground">
+                    {kpi.value}
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    {kpi.unit}
+                  </span>
                 </div>
                 <StatusBadge status={kpi.status} />
               </div>
@@ -149,13 +165,21 @@ export function KPICardsCompact() {
                         kpi.status === "success"
                           ? "bg-green-500"
                           : kpi.status === "warning"
-                            ? "bg-yellow-500"
-                            : "bg-red-500"
+                          ? "bg-yellow-500"
+                          : "bg-red-500"
                       )}
-                      style={{ width: `${Math.min((Number(kpi.value) / kpi.target) * 100, 100)}%` }}
+                      style={{
+                        width: `${Math.min(
+                          (Number(kpi.value) / kpi.target) * 100,
+                          100
+                        )}%`,
+                      }}
                     />
                   </div>
-                  <span className="text-[10px] text-muted-foreground">Meta: {kpi.target}{kpi.unit}</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Meta: {kpi.target}
+                    {kpi.unit}
+                  </span>
                 </div>
               )}
             </div>
@@ -163,5 +187,5 @@ export function KPICardsCompact() {
         </Card>
       ))}
     </div>
-  )
+  );
 }
