@@ -1,30 +1,45 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
+import { List } from "lucide-react";
 
 const ahtEntradaData = [
   { name: "Conversación", value: 91, target: 70, color: "#0F0F72" },
   { name: "Hold", value: 22, target: 20, color: "#04B4FD" },
-  { name: "Post-Llamada", value: 72, target: 50, color: "#A6B7FF" },
-]
+  { name: "No listo", value: 72, target: 50, color: "#A6B7FF" },
+];
 
 const ahtSalidaData = [
   { name: "Conversación", value: 65, target: 60, color: "#0F0F72" },
   { name: "Hold", value: 18, target: 20, color: "#04B4FD" },
-  { name: "Post-Llamada", value: 45, target: 40, color: "#A6B7FF" },
-]
+  { name: "No listo", value: 45, target: 40, color: "#A6B7FF" },
+];
 
 function ProgressBar({
   label,
   value,
   target,
 }: {
-  label: string
-  value: number
-  target: number
+  label: string;
+  value: number;
+  target: number;
 }) {
   return (
     <div className="space-y-1">
@@ -46,15 +61,20 @@ function ProgressBar({
         />
       </div>
     </div>
-  )
+  );
 }
 
 export function AHTDistribution() {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border-0 shadow-sm h-full">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold">Distribución del AHT</CardTitle>
+          <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center">
+            <List className="h-3 w-3 text-primary" />
+          </div>
+          <CardTitle className="text-lg font-semibold">
+            Distribución del AHT
+          </CardTitle>
           <Select defaultValue="entrada">
             <SelectTrigger className="w-[140px] h-8">
               <SelectValue />
@@ -76,7 +96,7 @@ export function AHTDistribution() {
               <span className="text-xl font-bold">578s</span>
             </div>
             <Badge variant="outline" className="text-xs">
-              <span className="text-muted-foreground">1.3% vs Benchmark</span>
+              <span className="text-muted-foreground">1.3% vs Meta</span>
             </Badge>
           </div>
           <div className="space-y-4">
@@ -96,7 +116,6 @@ export function AHTDistribution() {
             </div>
           </div>
         </div>
-
         {/* AHT Salida */}
         <div className="pt-4 border-t">
           <div className="flex items-center justify-between mb-4">
@@ -115,5 +134,5 @@ export function AHTDistribution() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
