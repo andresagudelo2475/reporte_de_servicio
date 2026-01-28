@@ -1,8 +1,6 @@
-"use client"
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ArrowUp, ArrowDown, Bot, MoreHorizontal } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowUp, ArrowDown, Bot, MoreHorizontal } from "lucide-react";
 
 const recommendations = [
   {
@@ -19,7 +17,7 @@ const recommendations = [
     action: "down",
     priority: "medium",
   },
-]
+];
 
 export function AIRecommendations() {
   return (
@@ -30,7 +28,9 @@ export function AIRecommendations() {
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center">
               <Bot className="h-4 w-4 text-white" />
             </div>
-            <CardTitle className="text-lg font-semibold">Recomendaciones del Sistema AI</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              Recomendaciones del Sistema AI
+            </CardTitle>
           </div>
           <Button variant="ghost" size="icon" className="h-8 w-8">
             <MoreHorizontal className="h-4 w-4" />
@@ -59,7 +59,9 @@ export function AIRecommendations() {
               </div>
               <div className="flex-1">
                 <p className="font-medium text-sm">{rec.title}</p>
-                <p className="text-xs text-muted-foreground">{rec.description}</p>
+                <p className="text-xs text-muted-foreground">
+                  {rec.description}
+                </p>
               </div>
               <Button
                 variant="ghost"
@@ -87,5 +89,5 @@ export function AIRecommendations() {
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }
