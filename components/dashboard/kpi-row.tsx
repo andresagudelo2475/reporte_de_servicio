@@ -1,25 +1,43 @@
-"use client"
+"use client";
 
-import React from "react"
-
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
-import { TrendingUp, TrendingDown, Clock, Phone, Users, Activity, CheckCircle, Headphones } from "lucide-react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import React from "react";
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import {
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  Clock,
+  Phone,
+  Users,
+  Activity,
+  CheckCircle,
+  Headphones,
+  List,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface KPIData {
-  id: string
-  title: string
-  value: string
-  unit?: string
-  change: number
-  changeLabel: string
-  target: number
-  status: "success" | "warning" | "danger"
-  icon: React.ReactNode
-  details?: { label: string; value: string }[]
-  hasGauge?: boolean
+  id: string;
+  title: string;
+  value: string;
+  unit?: string;
+  change: number;
+  changeLabel: string;
+  target: number;
+  status: "success" | "warning" | "danger";
+  icon: React.ReactNode;
+  details?: { label: string; value: string }[];
+  hasGauge?: boolean;
+  gauge?: number;
 }
 
 const kpiData: KPIData[] = [
@@ -32,12 +50,77 @@ const kpiData: KPIData[] = [
     changeLabel: "vs meta",
     target: 60,
     status: "warning",
-    icon: <Activity className="h-4 w-4" />,
-    hasGauge: true,
+    icon: <Activity className="h-5 w-5" />,
+    gauge: 57.6,
     details: [
       { label: "Llamadas Entrantes", value: "1,541" },
       { label: "Contestadas en Umbral", value: "887" },
       { label: "Llamadas Contestadas", value: "1,376" },
+      { label: "Llamadas Abandonadas", value: "165" },
+      { label: "% de Abandono", value: "10.7%" },
+    ],
+  },
+  {
+    id: "eficiencia",
+    title: "Nivel de Eficiencia",
+    value: "89.3",
+    unit: "%",
+    change: 2.1,
+    changeLabel: "+2.1%",
+    target: 85,
+    status: "success",
+    icon: <CheckCircle className="h-5 w-5" />,
+    details: [
+      { label: "Llamadas Entrantes", value: "1,541" },
+      { label: "Llamadas Contestadas", value: "1,376" },
+    ],
+  },
+  {
+    id: "aht_entrada",
+    title: "AHT Entrada",
+    value: "578",
+    unit: "s",
+    change: -1.3,
+    changeLabel: "-1.3%",
+    target: 580,
+    status: "success",
+    icon: <Phone className="h-5 w-5" />,
+    details: [
+      { label: "Conversación", value: "91% (70%)" },
+      { label: "Hold", value: "22% (20%)" },
+      { label: "No Listo", value: "72% (50%)" },
+    ],
+  },
+  {
+    id: "aht_salida",
+    title: "AHT Salida",
+    value: "578",
+    unit: "s",
+    change: 0.5,
+    changeLabel: "+0.5%",
+    target: 575,
+    status: "success",
+    icon: <Phone className="h-5 w-5" />,
+    details: [
+      { label: "Conversación", value: "91% (70%)" },
+      { label: "Hold", value: "22% (20%)" },
+      { label: "No Listo", value: "72% (50%)" },
+    ],
+  },
+  {
+    id: "aht",
+    title: "AHT Total",
+    value: "543",
+    unit: "s",
+    change: 23,
+    changeLabel: "+23%",
+    target: 520,
+    status: "warning",
+    icon: <Phone className="h-5 w-5" />,
+    details: [
+      { label: "Conversación", value: "91% (70%)" },
+      { label: "Hold", value: "22% (20%)" },
+      { label: "No Listo", value: "72% (50%)" },
     ],
   },
   {
@@ -49,26 +132,23 @@ const kpiData: KPIData[] = [
     changeLabel: "+12%",
     target: 45,
     status: "warning",
-    icon: <Clock className="h-4 w-4" />,
+    icon: <Clock className="h-5 w-5" />,
     details: [
       { label: "Fuera del SLA", value: "45s" },
       { label: "Promedio actual", value: "52s" },
+      { label: "Tendencia", value: "+7s" },
     ],
   },
   {
-    id: "aht",
-    title: "AHT",
-    value: "543",
+    id: "ata",
+    title: "ATA",
+    value: "12",
     unit: "s",
-    change: 23,
-    changeLabel: "+23%",
-    target: 520,
-    status: "warning",
-    icon: <Phone className="h-4 w-4" />,
-    details: [
-      { label: "Rango objetivo", value: "520s - 560s" },
-      { label: "Redesando", value: "+520s" },
-    ],
+    change: -2,
+    changeLabel: "-2s",
+    target: 15,
+    status: "success",
+    icon: <Clock className="h-5 w-5" />,
   },
   {
     id: "ocupacion",
@@ -79,57 +159,23 @@ const kpiData: KPIData[] = [
     changeLabel: "+1.41s",
     target: 75,
     status: "success",
-    icon: <Users className="h-4 w-4" />,
-    hasGauge: true,
+    icon: <Users className="h-5 w-5" />,
+    gauge: 76,
     details: [
       { label: "Horas Disponibles", value: "480h" },
       { label: "Horas ACD", value: "365h" },
+      { label: "Estado", value: "Alta" },
     ],
   },
-  {
-    id: "entrantes",
-    title: "Entrantes",
-    value: "1,541",
-    change: 1.6,
-    changeLabel: "+1.6%",
-    target: 1500,
-    status: "success",
-    icon: <Headphones className="h-4 w-4" />,
-  },
-  {
-    id: "contestadas",
-    title: "Contestadas",
-    value: "1,376",
-    change: -1.2,
-    changeLabel: "-1.2%",
-    target: 1400,
-    status: "warning",
-    icon: <CheckCircle className="h-4 w-4" />,
-  },
-  {
-    id: "umbral",
-    title: "Umbral",
-    value: "723",
-    change: 47,
-    changeLabel: "+47%",
-    target: 500,
-    status: "danger",
-    icon: <Clock className="h-4 w-4" />,
-  },
-  {
-    id: "abandonadas",
-    title: "Abandonadas",
-    value: "195",
-    change: 3.0,
-    changeLabel: "+3.0%",
-    target: 150,
-    status: "danger",
-    icon: <Phone className="h-4 w-4" />,
-  },
-]
+];
 
 function MiniGauge({ value, status }: { value: number; status: string }) {
-  const colorClass = status === "success" ? "#0DCA61" : status === "warning" ? "#FD6221" : "#DB1F51"
+  const colorClass =
+    status === "success"
+      ? "#0DCA61"
+      : status === "warning"
+      ? "#FD6221"
+      : "#DB1F51";
 
   return (
     <div className="relative w-12 h-7">
@@ -151,7 +197,7 @@ function MiniGauge({ value, status }: { value: number; status: string }) {
         />
       </svg>
     </div>
-  )
+  );
 }
 
 function StatusDot({ status }: { status: "success" | "warning" | "danger" }) {
@@ -159,8 +205,8 @@ function StatusDot({ status }: { status: "success" | "warning" | "danger" }) {
     success: "bg-green-500",
     warning: "bg-yellow-500",
     danger: "bg-red-500",
-  }
-  return <div className={cn("w-2 h-2 rounded-full", colors[status])} />
+  };
+  return <div className={cn("w-2 h-2 rounded-full", colors[status])} />;
 }
 
 export function KPIRow() {
@@ -168,7 +214,9 @@ export function KPIRow() {
     <Card className="border-0 shadow-sm">
       <CardContent className="p-3">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-semibold text-foreground">Resumen del Servicio</h3>
+          <h3 className="text-lg font-semibold text-foreground">
+            Resumen del Servicio
+          </h3>
         </div>
         <div className="grid grid-cols-8 gap-2">
           {kpiData.map((kpi) => (
@@ -176,17 +224,24 @@ export function KPIRow() {
               <DialogTrigger asChild>
                 <div className="cursor-pointer hover:bg-muted/50 rounded-md p-2 transition-colors border border-border/50">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] text-muted-foreground truncate">{kpi.title}</span>
+                    <span className="text-sm  font-semibold text-muted-foreground truncate ">
+                      {kpi.title}
+                    </span>
                     <StatusDot status={kpi.status} />
                   </div>
-                  
+
                   {kpi.hasGauge ? (
                     <div className="flex items-center gap-1">
-                      <MiniGauge value={Number(kpi.value)} status={kpi.status} />
+                      <MiniGauge
+                        value={Number(kpi.value)}
+                        status={kpi.status}
+                                              />
                       <div>
                         <div className="flex items-baseline">
                           <span className="text-lg font-bold">{kpi.value}</span>
-                          <span className="text-[10px] text-muted-foreground">{kpi.unit}</span>
+                          <span className="text-[10px] text-muted-foreground">
+                            {kpi.unit}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -194,11 +249,15 @@ export function KPIRow() {
                     <div>
                       <div className="flex items-baseline gap-0.5">
                         <span className="text-lg font-bold">{kpi.value}</span>
-                        {kpi.unit && <span className="text-[10px] text-muted-foreground">{kpi.unit}</span>}
+                        {kpi.unit && (
+                          <span className="text-[10px] text-muted-foreground">
+                            {kpi.unit}
+                          </span>
+                        )}
                       </div>
                     </div>
                   )}
-                  
+
                   <Badge
                     variant="secondary"
                     className={cn(
@@ -208,8 +267,8 @@ export function KPIRow() {
                           ? "bg-green-100 text-green-700"
                           : "bg-orange-100 text-orange-700"
                         : kpi.status === "success"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-700"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-700"
                     )}
                   >
                     {kpi.change > 0 ? (
@@ -231,14 +290,20 @@ export function KPIRow() {
                 <div className="grid gap-3 py-3">
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                     <div>
-                      <p className="text-xs text-muted-foreground">Valor Actual</p>
+                      <p className="text-xs text-muted-foreground">
+                        Valor Actual
+                      </p>
                       <p className="text-xl font-bold">
-                        {kpi.value}{kpi.unit}
+                        {kpi.value}
+                        {kpi.unit}
                       </p>
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-muted-foreground">Meta</p>
-                      <p className="text-base font-semibold">{kpi.target}{kpi.unit}</p>
+                      <p className="text-base font-semibold">
+                        {kpi.target}
+                        {kpi.unit}
+                      </p>
                     </div>
                   </div>
                   {kpi.details && (
@@ -249,8 +314,12 @@ export function KPIRow() {
                           key={index}
                           className="flex items-center justify-between p-2 bg-muted/50 rounded-md"
                         >
-                          <span className="text-xs text-muted-foreground">{detail.label}</span>
-                          <span className="text-xs font-medium">{detail.value}</span>
+                          <span className="text-xs text-muted-foreground">
+                            {detail.label}
+                          </span>
+                          <span className="text-xs font-medium">
+                            {detail.value}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -262,5 +331,5 @@ export function KPIRow() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
