@@ -1,26 +1,41 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
-import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Clock, Phone, Users, Activity } from "lucide-react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import {
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  CheckCircle,
+  Clock,
+  Phone,
+  Users,
+  Activity,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface KPIData {
-  id: string
-  title: string
-  value: string
-  unit?: string
-  change: number
-  changeLabel: string
-  target: number
-  status: "success" | "warning" | "danger"
-  icon: React.ReactNode
-  details?: { label: string; value: string }[]
-  gauge?: number
+  id: string;
+  title: string;
+  value: string;
+  unit?: string;
+  change: number;
+  changeLabel: string;
+  target: number;
+  status: "success" | "warning" | "danger";
+  icon: React.ReactNode;
+  details?: { label: string; value: string }[];
+  gauge?: number;
 }
 
 const kpiData: KPIData[] = [
@@ -41,55 +56,6 @@ const kpiData: KPIData[] = [
       { label: "Llamadas Contestadas", value: "1,376" },
       { label: "Llamadas Abandonadas", value: "165" },
       { label: "% de Abandono", value: "10.7%" },
-    ],
-  },
-  {
-    id: "asa",
-    title: "ASA",
-    value: "52",
-    unit: "s",
-    change: 12,
-    changeLabel: "+12%",
-    target: 45,
-    status: "warning",
-    icon: <Clock className="h-5 w-5" />,
-    details: [
-      { label: "Fuera del SLA", value: "45s" },
-      { label: "Promedio actual", value: "52s" },
-      { label: "Tendencia", value: "+7s" },
-    ],
-  },
-  {
-    id: "aht",
-    title: "AHT",
-    value: "543",
-    unit: "s",
-    change: 23,
-    changeLabel: "+23%",
-    target: 520,
-    status: "warning",
-    icon: <Phone className="h-5 w-5" />,
-    details: [
-      { label: "Rango objetivo", value: "520s - 560s" },
-      { label: "Redesando", value: "+520s" },
-      { label: "Período", value: "(4.4.43) - 2220" },
-    ],
-  },
-  {
-    id: "ocupacion",
-    title: "Ocupación Monitoreo",
-    value: "76",
-    unit: "%",
-    change: 1.41,
-    changeLabel: "+1.41s",
-    target: 75,
-    status: "success",
-    icon: <Users className="h-5 w-5" />,
-    gauge: 76,
-    details: [
-      { label: "Horas Disponibles", value: "480h" },
-      { label: "Horas ACD", value: "365h" },
-      { label: "Estado", value: "Alta" },
     ],
   },
   {
@@ -140,6 +106,38 @@ const kpiData: KPIData[] = [
     ],
   },
   {
+    id: "aht",
+    title: "AHT",
+    value: "543",
+    unit: "s",
+    change: 23,
+    changeLabel: "+23%",
+    target: 520,
+    status: "warning",
+    icon: <Phone className="h-5 w-5" />,
+    details: [
+      { label: "Rango objetivo", value: "520s - 560s" },
+      { label: "Redesando", value: "+520s" },
+      { label: "Período", value: "(4.4.43) - 2220" },
+    ],
+  },
+  {
+    id: "asa",
+    title: "ASA",
+    value: "52",
+    unit: "s",
+    change: 12,
+    changeLabel: "+12%",
+    target: 45,
+    status: "warning",
+    icon: <Clock className="h-5 w-5" />,
+    details: [
+      { label: "Fuera del SLA", value: "45s" },
+      { label: "Promedio actual", value: "52s" },
+      { label: "Tendencia", value: "+7s" },
+    ],
+  },
+  {
     id: "ata",
     title: "ATA",
     value: "12",
@@ -150,11 +148,33 @@ const kpiData: KPIData[] = [
     status: "success",
     icon: <Clock className="h-5 w-5" />,
   },
-]
+  {
+    id: "ocupacion",
+    title: "Ocupación Monitoreo",
+    value: "76",
+    unit: "%",
+    change: 1.41,
+    changeLabel: "+1.41s",
+    target: 75,
+    status: "success",
+    icon: <Users className="h-5 w-5" />,
+    gauge: 76,
+    details: [
+      { label: "Horas Disponibles", value: "480h" },
+      { label: "Horas ACD", value: "365h" },
+      { label: "Estado", value: "Alta" },
+    ],
+  },
+];
 
 function GaugeChart({ value, status }: { value: number; status: string }) {
-  const angle = (value / 100) * 180
-  const colorClass = status === "success" ? "#0DCA61" : status === "warning" ? "#FD6221" : "#DB1F51"
+  const angle = (value / 100) * 180;
+  const colorClass =
+    status === "success"
+      ? "#0DCA61"
+      : status === "warning"
+      ? "#FD6221"
+      : "#DB1F51";
 
   return (
     <div className="relative w-24 h-14 mx-auto">
@@ -176,7 +196,7 @@ function GaugeChart({ value, status }: { value: number; status: string }) {
         />
       </svg>
     </div>
-  )
+  );
 }
 
 function StatusBadge({ status }: { status: "success" | "warning" | "danger" }) {
@@ -184,17 +204,20 @@ function StatusBadge({ status }: { status: "success" | "warning" | "danger" }) {
     success: { label: "Cumple", className: "bg-green-100 text-green-700" },
     warning: { label: "Moderado", className: "bg-yellow-100 text-yellow-700" },
     danger: { label: "Crítico", className: "bg-red-100 text-red-700" },
-  }
+  };
 
   return (
-    <Badge variant="secondary" className={cn("text-xs", config[status].className)}>
+    <Badge
+      variant="secondary"
+      className={cn("text-xs", config[status].className)}
+    >
       {config[status].label}
     </Badge>
-  )
+  );
 }
 
 export function KPICards() {
-  const [selectedKPI, setSelectedKPI] = useState<KPIData | null>(null)
+  const [selectedKPI, setSelectedKPI] = useState<KPIData | null>(null);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -220,8 +243,8 @@ export function KPICards() {
                             ? "bg-green-100 text-green-700"
                             : "bg-yellow-100 text-yellow-700"
                           : kpi.status === "success"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-700"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
                       )}
                     >
                       {kpi.change > 0 ? (
@@ -241,16 +264,24 @@ export function KPICards() {
                       <div className="flex flex-col items-start">
                         <GaugeChart value={kpi.gauge} status={kpi.status} />
                         <div className="flex items-baseline mt-1">
-                          <span className="text-3xl font-bold text-foreground">{kpi.value}</span>
-                          <span className="text-lg text-muted-foreground">{kpi.unit}</span>
+                          <span className="text-3xl font-bold text-foreground">
+                            {kpi.value}
+                          </span>
+                          <span className="text-lg text-muted-foreground">
+                            {kpi.unit}
+                          </span>
                         </div>
                         <StatusBadge status={kpi.status} />
                       </div>
                     ) : (
                       <div className="flex flex-col">
                         <div className="flex items-baseline gap-1">
-                          <span className="text-3xl font-bold text-foreground">{kpi.value}</span>
-                          <span className="text-lg text-muted-foreground">{kpi.unit}</span>
+                          <span className="text-3xl font-bold text-foreground">
+                            {kpi.value}
+                          </span>
+                          <span className="text-lg text-muted-foreground">
+                            {kpi.unit}
+                          </span>
                         </div>
                         <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
                           <div
@@ -259,14 +290,22 @@ export function KPICards() {
                               kpi.status === "success"
                                 ? "bg-green-500"
                                 : kpi.status === "warning"
-                                  ? "bg-yellow-500"
-                                  : "bg-red-500"
+                                ? "bg-yellow-500"
+                                : "bg-red-500"
                             )}
-                            style={{ width: `${Math.min((Number(kpi.value) / kpi.target) * 100, 100)}%` }}
+                            style={{
+                              width: `${Math.min(
+                                (Number(kpi.value) / kpi.target) * 100,
+                                100
+                              )}%`,
+                            }}
                           />
                         </div>
                         <div className="flex items-center justify-between mt-1 text-xs text-muted-foreground">
-                          <span>Meta: {kpi.target}{kpi.unit}</span>
+                          <span>
+                            Meta: {kpi.target}
+                            {kpi.unit}
+                          </span>
                         </div>
                       </div>
                     )}
@@ -287,12 +326,16 @@ export function KPICards() {
                 <div>
                   <p className="text-sm text-muted-foreground">Valor Actual</p>
                   <p className="text-2xl font-bold">
-                    {kpi.value}{kpi.unit}
+                    {kpi.value}
+                    {kpi.unit}
                   </p>
                 </div>
                 <div className="text-right">
                   <p className="text-sm text-muted-foreground">Meta</p>
-                  <p className="text-lg font-semibold">{kpi.target}{kpi.unit}</p>
+                  <p className="text-lg font-semibold">
+                    {kpi.target}
+                    {kpi.unit}
+                  </p>
                 </div>
               </div>
               {kpi.details && (
@@ -303,8 +346,12 @@ export function KPICards() {
                       key={index}
                       className="flex items-center justify-between p-3 bg-muted/50 rounded-md"
                     >
-                      <span className="text-sm text-muted-foreground">{detail.label}</span>
-                      <span className="text-sm font-medium">{detail.value}</span>
+                      <span className="text-sm text-muted-foreground">
+                        {detail.label}
+                      </span>
+                      <span className="text-sm font-medium">
+                        {detail.value}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -314,5 +361,5 @@ export function KPICards() {
         </Dialog>
       ))}
     </div>
-  )
+  );
 }
