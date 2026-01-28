@@ -39,7 +39,7 @@ const tableNames = {
 // Sample data for tables
 const consolidadoMesData = [
   {
-    fecha: "2024-01-15",
+    fecha: "2026-01-01",
     fecha_hora: "00:00",
     cod_pcrc: "011",
     entrantes: 1541,
@@ -64,7 +64,7 @@ const consolidadoMesData = [
     aht_total: "560s",
   },
   {
-    fecha: "2024-01-14",
+    fecha: "2026-01-02",
     fecha_hora: "00:00",
     cod_pcrc: "012",
     entrantes: 1322,
@@ -89,7 +89,7 @@ const consolidadoMesData = [
     aht_total: "550s",
   },
   {
-    fecha: "2024-01-13",
+    fecha: "2026-01-03",
     fecha_hora: "00:00",
     cod_pcrc: "013",
     entrantes: 1456,
@@ -113,6 +113,183 @@ const consolidadoMesData = [
     aht_out: "538s",
     aht_total: "555s",
   },
+  {
+    fecha: "2026-01-04",
+    fecha_hora: "00:00",
+    cod_pcrc: "013",
+    entrantes: 1456,
+    contestadas: 1312,
+    abandonadas: 144,
+    contestadas_umbral: 876,
+    salida: 223,
+    entrada: 1456,
+    ns: "60.2%",
+    eficacia: "90.1%",
+    asa: "50s",
+    ata: "10s",
+    acd: "358h",
+    porc_abandono: "9.9%",
+    ocupacion: "77%",
+    prom_conversacion_in: "418s",
+    prom_conversacion_out: "378s",
+    no_listo: "44s",
+    hold: "31s",
+    aht_in: "572s",
+    aht_out: "538s",
+    aht_total: "555s",
+  },
+  {
+    fecha: "2026-01-05",
+    fecha_hora: "00:00",
+    cod_pcrc: "013",
+    entrantes: 1456,
+    contestadas: 1312,
+    abandonadas: 144,
+    contestadas_umbral: 876,
+    salida: 223,
+    entrada: 1456,
+    ns: "60.2%",
+    eficacia: "90.1%",
+    asa: "50s",
+    ata: "10s",
+    acd: "358h",
+    porc_abandono: "9.9%",
+    ocupacion: "77%",
+    prom_conversacion_in: "418s",
+    prom_conversacion_out: "378s",
+    no_listo: "44s",
+    hold: "31s",
+    aht_in: "572s",
+    aht_out: "538s",
+    aht_total: "555s",
+  },
+  {
+    fecha: "2026-01-06",
+    fecha_hora: "00:00",
+    cod_pcrc: "013",
+    entrantes: 1456,
+    contestadas: 1312,
+    abandonadas: 144,
+    contestadas_umbral: 876,
+    salida: 223,
+    entrada: 1456,
+    ns: "60.2%",
+    eficacia: "90.1%",
+    asa: "50s",
+    ata: "10s",
+    acd: "358h",
+    porc_abandono: "9.9%",
+    ocupacion: "77%",
+    prom_conversacion_in: "418s",
+    prom_conversacion_out: "378s",
+    no_listo: "44s",
+    hold: "31s",
+    aht_in: "572s",
+    aht_out: "538s",
+    aht_total: "555s",
+  },
+  {
+    fecha: "2024-01-07",
+    fecha_hora: "00:00",
+    cod_pcrc: "013",
+    entrantes: 1456,
+    contestadas: 1312,
+    abandonadas: 144,
+    contestadas_umbral: 876,
+    salida: 223,
+    entrada: 1456,
+    ns: "60.2%",
+    eficacia: "90.1%",
+    asa: "50s",
+    ata: "10s",
+    acd: "358h",
+    porc_abandono: "9.9%",
+    ocupacion: "77%",
+    prom_conversacion_in: "418s",
+    prom_conversacion_out: "378s",
+    no_listo: "44s",
+    hold: "31s",
+    aht_in: "572s",
+    aht_out: "538s",
+    aht_total: "555s",
+  },
+  {
+    fecha: "2024-01-08",
+    fecha_hora: "00:00",
+    cod_pcrc: "013",
+    entrantes: 1456,
+    contestadas: 1312,
+    abandonadas: 144,
+    contestadas_umbral: 876,
+    salida: 223,
+    entrada: 1456,
+    ns: "60.2%",
+    eficacia: "90.1%",
+    asa: "50s",
+    ata: "10s",
+    acd: "358h",
+    porc_abandono: "9.9%",
+    ocupacion: "77%",
+    prom_conversacion_in: "418s",
+    prom_conversacion_out: "378s",
+    no_listo: "44s",
+    hold: "31s",
+    aht_in: "572s",
+    aht_out: "538s",
+    aht_total: "555s",
+  },
+  {
+    fecha: "2024-01-09",
+    fecha_hora: "00:00",
+    cod_pcrc: "013",
+    entrantes: 1456,
+    contestadas: 1312,
+    abandonadas: 144,
+    contestadas_umbral: 876,
+    salida: 223,
+    entrada: 1456,
+    ns: "60.2%",
+    eficacia: "90.1%",
+    asa: "50s",
+    ata: "10s",
+    acd: "358h",
+    porc_abandono: "9.9%",
+    ocupacion: "77%",
+    prom_conversacion_in: "418s",
+    prom_conversacion_out: "378s",
+    no_listo: "44s",
+    hold: "31s",
+    aht_in: "572s",
+    aht_out: "538s",
+    aht_total: "555s",
+  },
+  {
+    fecha: "2024-01-10",
+    fecha_hora: "00:00",
+    cod_pcrc: "013",
+    entrantes: 1456,
+    contestadas: 1312,
+    abandonadas: 144,
+    contestadas_umbral: 876,
+    salida: 223,
+    entrada: 1456,
+    ns: "60.2%",
+    eficacia: "90.1%",
+    asa: "50s",
+    ata: "10s",
+    acd: "358h",
+    porc_abandono: "9.9%",
+    ocupacion: "77%",
+    prom_conversacion_in: "418s",
+    prom_conversacion_out: "378s",
+    no_listo: "44s",
+    hold: "31s",
+    aht_in: "572s",
+    aht_out: "538s",
+    aht_total: "555s",
+  },
+
+
 ]
 
 const intradiaConsolidadoData = [
@@ -311,33 +488,46 @@ export function DetailTables({ activeTable, onTableChange }: DetailTablesProps) 
           <Table>
             <TableHeader>
               <TableRow className="bg-muted/50">
-                <TableHead className="font-semibold">Fecha</TableHead>
-                <TableHead className="font-semibold">Hora</TableHead>
-                <TableHead className="font-semibold">Cod PCRC</TableHead>
-                <TableHead className="font-semibold text-right">Entrantes</TableHead>
-                <TableHead className="font-semibold text-right">Contestadas</TableHead>
-                <TableHead className="font-semibold text-right">Abandonadas</TableHead>
-                <TableHead className="font-semibold text-right">NS</TableHead>
-                <TableHead className="font-semibold text-right">Eficacia</TableHead>
-                <TableHead className="font-semibold text-right">ASA</TableHead>
-                <TableHead className="font-semibold text-right">AHT In</TableHead>
-                <TableHead className="font-semibold text-right">AHT Out</TableHead>
-                <TableHead className="font-semibold text-right">AHT Total</TableHead>
-                <TableHead className="font-semibold text-right">Ocupación</TableHead>
+                <TableHead className="font-semibold text-center">Fecha</TableHead>
+                <TableHead className="font-semibold text-center">Fecha Hora</TableHead>
+                <TableHead className="font-semibold text-center">Cod PCRC</TableHead>
+                <TableHead className="font-semibold text-center">Entrantes</TableHead>
+                <TableHead className="font-semibold text-center">Contestadas</TableHead>
+                <TableHead className="font-semibold text-center">Abandonadas</TableHead>
+                <TableHead className="font-semibold text-center">Contestadas Umbral</TableHead>
+                <TableHead className="font-semibold text-center">Salida</TableHead>
+                <TableHead className="font-semibold text-center">Entrada</TableHead>
+                <TableHead className="font-semibold text-center">NS</TableHead>
+                <TableHead className="font-semibold text-center">Eficacia</TableHead>
+                <TableHead className="font-semibold text-center">ASA</TableHead>
+                <TableHead className="font-semibold text-center">ATA</TableHead>
+                <TableHead className="font-semibold text-center">ACD</TableHead>
+                <TableHead className="font-semibold text-center">% Abandono</TableHead>
+                <TableHead className="font-semibold text-center">Ocupación</TableHead>
+                <TableHead className="font-semibold text-center">Conversación In</TableHead>
+                <TableHead className="font-semibold text-center">Conversación Out</TableHead>
+                <TableHead className="font-semibold text-center">No Listo</TableHead>
+                <TableHead className="font-semibold text-center">Hold</TableHead>
+                <TableHead className="font-semibold text-center">AHT In</TableHead>
+                <TableHead className="font-semibold text-center">AHT Out</TableHead>
+                <TableHead className="font-semibold text-center">AHT Total</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {consolidadoMesData.map((row, index) => (
                 <TableRow key={index} className="hover:bg-muted/30">
-                  <TableCell>{row.fecha}</TableCell>
-                  <TableCell>{row.fecha_hora}</TableCell>
-                  <TableCell>
+                  <TableCell className="text-center">{row.fecha}</TableCell>
+                  <TableCell className="text-center">{row.fecha_hora}</TableCell>
+                  <TableCell className="text-center font-medium">
                     <Badge variant="outline">{row.cod_pcrc}</Badge>
                   </TableCell>
-                  <TableCell className="text-right font-medium">{row.entrantes.toLocaleString()}</TableCell>
-                  <TableCell className="text-right">{row.contestadas.toLocaleString()}</TableCell>
-                  <TableCell className="text-right text-red-600">{row.abandonadas}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-center font-medium">{row.entrantes.toLocaleString()}</TableCell>
+                  <TableCell className="text-center">{row.contestadas.toLocaleString()}</TableCell>
+                  <TableCell className="text-center ">{row.abandonadas}</TableCell>
+                  <TableCell className="text-center ">{row.contestadas_umbral}</TableCell>
+                  <TableCell className="text-center ">{row.salida}</TableCell>
+                  <TableCell className="text-center ">{row.entrada}</TableCell>
+                  <TableCell className="text-center">
                     <Badge
                       variant="secondary"
                       className={cn(
@@ -349,12 +539,20 @@ export function DetailTables({ activeTable, onTableChange }: DetailTablesProps) 
                       {row.ns}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-right">{row.eficacia}</TableCell>
-                  <TableCell className="text-right">{row.asa}</TableCell>
-                  <TableCell className="text-right">{row.aht_in}</TableCell>
-                  <TableCell className="text-right">{row.aht_out}</TableCell>
-                  <TableCell className="text-right font-medium">{row.aht_total}</TableCell>
-                  <TableCell className="text-right">{row.ocupacion}</TableCell>
+                  <TableCell className="text-center">{row.eficacia}</TableCell>
+                  <TableCell className="text-center">{row.asa}</TableCell>
+                  <TableCell className="text-center">{row.ata}</TableCell>
+                  <TableCell className="text-center">{row.acd}</TableCell>
+                  <TableCell className="text-center">{row.porc_abandono}</TableCell>
+                  <TableCell className="text-center">{row.ocupacion}</TableCell>
+                  <TableCell className="text-center">{row.prom_conversacion_in}</TableCell>
+                  <TableCell className="text-center">{row.prom_conversacion_out}</TableCell>
+                  <TableCell className="text-center">{row.no_listo}</TableCell>
+                  <TableCell className="text-center">{row.hold}</TableCell>
+                  <TableCell className="text-center">{row.aht_in}</TableCell>
+                  <TableCell className="text-center">{row.aht_out}</TableCell>
+                  <TableCell className="text-center font-medium">{row.aht_total}</TableCell>
+                 
                 </TableRow>
               ))}
             </TableBody>
