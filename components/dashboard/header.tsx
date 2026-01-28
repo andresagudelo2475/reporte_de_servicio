@@ -1,60 +1,71 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Menu, Search, Bell, Settings, BookOpen, Filter, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import {
+  Menu,
+  Search,
+  Bell,
+  Settings,
+  BookOpen,
+  Filter,
+  X,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Label } from "@/components/ui/label"
-import { Calendar } from "@/components/ui/calendar"
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { format } from "date-fns"
-import { es } from "date-fns/locale"
-import { CalendarIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import type { DateRange } from "react-day-picker"
+} from "@/components/ui/popover";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { CalendarIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { DateRange } from "react-day-picker";
 
-interface HeaderProps {
-  activeView: "dashboard" | "detail"
-  onViewChange: (view: "dashboard" | "detail") => void
-}
+// interface HeaderProps {
+//   activeView: "dashboard" | "detail";
+//   onViewChange: (view: "dashboard" | "detail") => void;
+// }
 
-export function DashboardHeader({ activeView, onViewChange }: HeaderProps) {
-  const [isFilterOpen, setIsFilterOpen] = useState(false)
-  const [date, setDate] = useState<DateRange | undefined>()
+export function DashboardHeader() {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [date, setDate] = useState<DateRange | undefined>();
 
   return (
     <header className="bg-primary text-primary-foreground rounded-md mx-3 mt-2">
       <div className="flex items-center justify-between px-4 py-2">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/10">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 text-primary-foreground hover:bg-white/10"
+          >
             <Menu className="h-4 w-4" />
           </Button>
           <div className="flex items-center gap-1.5">
-            
-            <h1 className="text-sm font-semibold">Reporte de Servicio</h1>
+            <h1 className="text-lg font-semibold">Reporte de Servicio</h1>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          {/* View Toggle */}
+          {/* View Toggle
           <div className="flex bg-white/10 rounded-md p-0.5">
             <Button
               variant="ghost"
@@ -82,7 +93,7 @@ export function DashboardHeader({ activeView, onViewChange }: HeaderProps) {
             >
               Detalle
             </Button>
-          </div>
+          </div> */}
 
           {/* Search */}
           <div className="relative">
@@ -96,7 +107,11 @@ export function DashboardHeader({ activeView, onViewChange }: HeaderProps) {
           {/* Filter Button */}
           <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-7 w-7 text-primary-foreground hover:bg-white/10"
+              >
                 <Filter className="h-3.5 w-3.5" />
               </Button>
             </SheetTrigger>
@@ -185,8 +200,8 @@ export function DashboardHeader({ activeView, onViewChange }: HeaderProps) {
                         {date?.from ? (
                           date.to ? (
                             <>
-                              {format(date.from, "dd MMM yyyy", { locale: es })} -{" "}
-                              {format(date.to, "dd MMM yyyy", { locale: es })}
+                              {format(date.from, "dd MMM yyyy", { locale: es })}{" "}
+                              - {format(date.to, "dd MMM yyyy", { locale: es })}
                             </>
                           ) : (
                             format(date.from, "dd MMM yyyy", { locale: es })
@@ -210,7 +225,10 @@ export function DashboardHeader({ activeView, onViewChange }: HeaderProps) {
                   </Popover>
                 </div>
                 <div className="flex gap-2 mt-4">
-                  <Button className="flex-1" onClick={() => setIsFilterOpen(false)}>
+                  <Button
+                    className="flex-1"
+                    onClick={() => setIsFilterOpen(false)}
+                  >
                     Aplicar Filtros
                   </Button>
                   <Button variant="outline" onClick={() => setDate(undefined)}>
@@ -222,21 +240,15 @@ export function DashboardHeader({ activeView, onViewChange }: HeaderProps) {
           </Sheet>
 
           {/* Manual Button */}
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/10">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 text-primary-foreground hover:bg-white/10"
+          >
             <BookOpen className="h-3.5 w-3.5" />
           </Button>
-
-          {/* Notifications */}
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/10">
-            
-          </Button>
-
-          {/* Settings */}
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/10">
-            
-          </Button>
-
-          {/* User Avatar */}
-          <div className="w-7 h-7 rounded-fulleader>
-  )
+        </div>
+      </div>
+    </header>
+  );
 }
