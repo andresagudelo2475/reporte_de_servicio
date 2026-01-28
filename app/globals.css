@@ -1,49 +1,49 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F2F0EB;
+  --background: #f2f0eb;
   --foreground: #111111;
-  --card: #FFFFFF;
+  --card: #ffffff;
   --card-foreground: #111111;
-  --popover: #FFFFFF;
+  --popover: #ffffff;
   --popover-foreground: #111111;
-  --primary: #0F0F72;
-  --primary-foreground: #FFFFFF;
-  --secondary: #A6B7FF;
-  --secondary-foreground: #0F0F72;
-  --muted: #F2F0EB;
-  --muted-foreground: #6B7280;
+  --primary: #0f0f72;
+  --primary-foreground: #ffffff;
+  --secondary: #a6b7ff;
+  --secondary-foreground: #0f0f72;
+  --muted: #f2f0eb;
+  --muted-foreground: #6b7280;
   --accent: #2800c8;
-  --accent-foreground: #FFFFFF;
-  --destructive: #DB1F51;
-  --destructive-foreground: #FFFFFF;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #A6B7FF;
-  --chart-1: #0F0F72;
-  --chart-2: #04B4FD;
-  --chart-3: #0DCA61;
-  --chart-4: #FD6221;
-  --chart-5: #09BFB0;
+  --accent-foreground: #ffffff;
+  --destructive: #db1f51;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #a6b7ff;
+  --chart-1: #0f0f72;
+  --chart-2: #04b4fd;
+  --chart-3: #0dca61;
+  --chart-4: #fd6221;
+  --chart-5: #09bfb0;
   --radius: 0.5rem;
-  --sidebar: #0F0F72;
-  --sidebar-foreground: #FFFFFF;
+  --sidebar: #0f0f72;
+  --sidebar-foreground: #ffffff;
   --sidebar-primary: #2800c8;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #A6B7FF;
-  --sidebar-accent-foreground: #0F0F72;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #a6b7ff;
+  --sidebar-accent-foreground: #0f0f72;
   --sidebar-border: #2800c8;
-  --sidebar-ring: #A6B7FF;
-  
+  --sidebar-ring: #a6b7ff;
+
   /* Custom colors */
-  --success: #0DCA61;
-  --warning: #FD6221;
-  --info: #04B4FD;
-  --cyan: #09BFB0;
-  --yellow: #F0FA00;
+  --success: #0dca61;
+  --warning: #fd6221;
+  --info: #04b4fd;
+  --cyan: #09bfb0;
+  --yellow: #f0fa00;
 }
 
 .dark {
@@ -82,8 +82,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: "poppins", "arial";
+  --font-mono: "poppins", "arial";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
