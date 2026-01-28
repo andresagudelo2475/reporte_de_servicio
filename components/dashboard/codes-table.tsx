@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -10,25 +10,34 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { cn } from "@/lib/utils"
-import { Info, Filter, Search, MoreHorizontal, Phone, AlertCircle, AlertTriangle, CheckCircle } from "lucide-react"
-import { Progress } from "@/components/ui/progress"
+} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
+import {
+  Info,
+  Filter,
+  Search,
+  MoreHorizontal,
+  Phone,
+  AlertCircle,
+  AlertTriangle,
+  CheckCircle,
+} from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 interface CodeData {
-  prioridad: "Alta" | "Media" | "Baja"
-  codigo1: string
-  codigo2: string
-  motivo: string
-  participacion: number
-  volumen: number
-  volumenChange: string
-  aht: string
-  ahtChange?: string
-  impactoNs: number
-  impactoNsLabel: string
-  estado: "Crítico" | "Riesgo" | "Baja"
-  accion: string
+  prioridad: "Alta" | "Media" | "Baja";
+  codigo1: string;
+  codigo2: string;
+  motivo: string;
+  participacion: number;
+  volumen: number;
+  volumenChange: string;
+  aht: string;
+  ahtChange?: string;
+  impactoNs: number;
+  impactoNsLabel: string;
+  estado: "Crítico" | "Riesgo" | "Baja";
+  accion: string;
 }
 
 const codesData: CodeData[] = [
@@ -151,7 +160,7 @@ const codesData: CodeData[] = [
     estado: "Baja",
     accion: "Becider",
   },
-]
+];
 
 function PriorityBadge({ priority }: { priority: "Alta" | "Media" | "Baja" }) {
   const config = {
@@ -167,17 +176,20 @@ function PriorityBadge({ priority }: { priority: "Alta" | "Media" | "Baja" }) {
       icon: <CheckCircle className="h-3 w-3" />,
       className: "bg-green-100 text-green-700 border-green-200",
     },
-  }
+  };
 
   return (
     <Badge
       variant="outline"
-      className={cn("flex items-center gap-1 font-normal", config[priority].className)}
+      className={cn(
+        "flex items-center gap-1 font-normal",
+        config[priority].className
+      )}
     >
       {config[priority].icon}
       {priority}
     </Badge>
-  )
+  );
 }
 
 function StatusBadge({ status }: { status: "Crítico" | "Riesgo" | "Baja" }) {
@@ -185,50 +197,35 @@ function StatusBadge({ status }: { status: "Crítico" | "Riesgo" | "Baja" }) {
     Crítico: "bg-red-100 text-red-700",
     Riesgo: "bg-yellow-100 text-yellow-700",
     Baja: "bg-green-100 text-green-700",
-  }
+  };
 
   return (
     <Badge variant="secondary" className={cn("font-normal", config[status])}>
       {status}
     </Badge>
-  )
+  );
 }
 
 export function CodesTable() {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border-0 shadow-sm h-full">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
               <Phone className="h-4 w-4 text-primary" />
             </div>
-            <CardTitle className="text-lg font-semibold">Códigos más representativos</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              Códigos más representativos
+            </CardTitle>
             <Info className="h-4 w-4 text-muted-foreground" />
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="text-xs">
-              Hoy
-            </Badge>
-            <Button variant="outline" size="sm" className="h-8 bg-transparent">
-              <Filter className="h-3 w-3 mr-1" />
-              Cargas Representativas
-            </Button>
-            <Button variant="outline" size="sm" className="h-8 bg-transparent">
-              <Filter className="h-3 w-3 mr-1" />
-              Filtro
-            </Button>
             <Button size="sm" className="h-8">
               <Search className="h-3 w-3 mr-1" />
               Buscar...
             </Button>
           </div>
-        </div>
-        <div className="flex items-center gap-2 mt-3 text-sm text-muted-foreground">
-          <span className="font-medium text-foreground">Priorizar el &lt;operativamente&gt;</span>
-          <span className="text-muted-foreground">🔒</span>
-          <span className="text-muted-foreground">❤️</span>
-          <span className="text-muted-foreground">○</span>
         </div>
       </CardHeader>
       <CardContent>
@@ -238,13 +235,14 @@ export function CodesTable() {
               <TableRow className="bg-muted/30 hover:bg-muted/30">
                 <TableHead className="font-semibold">Prioridad</TableHead>
                 <TableHead className="font-semibold">Código</TableHead>
-                <TableHead className="font-semibold">Motivo / Descripción</TableHead>
+                <TableHead className="font-semibold">
+                  Motivo / Descripción
+                </TableHead>
                 <TableHead className="font-semibold">% Participación</TableHead>
                 <TableHead className="font-semibold">Volumen</TableHead>
                 <TableHead className="font-semibold">AHT</TableHead>
                 <TableHead className="font-semibold">Impacto en NS</TableHead>
                 <TableHead className="font-semibold">Estado</TableHead>
-                <TableHead className="font-semibold">Acción</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -258,28 +256,36 @@ export function CodesTable() {
                       <Badge className="bg-primary text-primary-foreground font-mono">
                         {row.codigo1}
                       </Badge>
-                      <span className="text-muted-foreground">{row.codigo2}</span>
                     </div>
                   </TableCell>
                   <TableCell className="font-medium">{row.motivo}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2 min-w-[120px]">
-                      <Progress value={row.participacion} className="h-2 flex-1" />
-                      <span className="text-sm text-muted-foreground">{row.participacion}%</span>
+                      <Progress
+                        value={row.participacion}
+                        className="h-2 flex-1"
+                      />
+                      <span className="text-sm text-muted-foreground">
+                        {row.participacion}%
+                      </span>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-1">
                       <span className="font-medium">{row.volumen}</span>
                       <span className="text-xs text-green-600">↑</span>
-                      <span className="text-xs text-muted-foreground">{row.volumenChange}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {row.volumenChange}
+                      </span>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-1">
                       <span className="font-semibold">{row.aht}</span>
                       {row.ahtChange && (
-                        <span className="text-xs text-muted-foreground">{row.ahtChange}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {row.ahtChange}
+                        </span>
                       )}
                     </div>
                   </TableCell>
@@ -291,17 +297,13 @@ export function CodesTable() {
                           style={{ width: `${row.impactoNs}%` }}
                         />
                       </div>
-                      <span className="text-xs text-muted-foreground">{row.impactoNsLabel}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {row.impactoNsLabel}
+                      </span>
                     </div>
                   </TableCell>
                   <TableCell>
                     <StatusBadge status={row.estado} />
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm" className="h-7 text-xs bg-transparent">
-                      <Phone className="h-3 w-3 mr-1" />
-                      {row.accion}
-                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -310,5 +312,5 @@ export function CodesTable() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
