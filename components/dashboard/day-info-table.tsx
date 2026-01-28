@@ -79,6 +79,15 @@ const dayData: DayData[] = [
     asa: "+542s",
     aht: "+542s",
   },
+   {
+    dia: "Festivo",
+    entrantes: "800",
+    atendidas: 750,
+    abandonadas: 50,
+    ns: "573s",
+    asa: "+542s",
+    aht: "+542s",
+  },
 ];
 
 export function DayInfoTable() {
