@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -10,20 +10,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Progress } from "@/components/ui/progress"
-import { MapPin, MoreHorizontal, ArrowDown, ArrowUp } from "lucide-react"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/table";
+import { Progress } from "@/components/ui/progress";
+import { MapPin, MoreHorizontal, ArrowDown, ArrowUp } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface IntradayData {
-  hora: string
-  forecast: string
-  forecastTrend: "up" | "down"
-  real: string
-  desvio: number
-  capacidad: number
-  riesgo: "Alto" | "Bajo"
-  accionSugerida: string
+  hora: string;
+  forecast: string;
+  forecastTrend: "up" | "down";
+  real: string;
+  desvio: number;
+  capacidad: number;
+  riesgo: "Alto" | "Bajo";
+  accionSugerida: string;
 }
 
 const intradayData: IntradayData[] = [
@@ -87,7 +87,7 @@ const intradayData: IntradayData[] = [
     riesgo: "Bajo",
     accionSugerida: "Solicitar 2 agentes",
   },
-]
+];
 
 function RiskBadge({ risk }: { risk: "Alto" | "Bajo" }) {
   return (
@@ -95,24 +95,28 @@ function RiskBadge({ risk }: { risk: "Alto" | "Bajo" }) {
       variant="secondary"
       className={cn(
         "font-normal",
-        risk === "Alto" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"
+        risk === "Alto"
+          ? "bg-red-100 text-red-700"
+          : "bg-green-100 text-green-700"
       )}
     >
       {risk}
     </Badge>
-  )
+  );
 }
 
 export function IntradayDetail() {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border-0 shadow-sm h-full">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center">
               <MapPin className="h-3 w-3 text-primary" />
             </div>
-            <CardTitle className="text-base font-semibold">Detalle PCRC - Intradía</CardTitle>
+            <CardTitle className="text-base font-semibold">
+              Detalle PCRC - Intradía
+            </CardTitle>
             <div className="w-2 h-2 rounded-full bg-green-500" />
           </div>
           <Button variant="ghost" size="icon" className="h-7 w-7">
@@ -130,13 +134,14 @@ export function IntradayDetail() {
               <TableHead className="font-semibold text-xs">Desvío</TableHead>
               <TableHead className="font-semibold text-xs">Capacidad</TableHead>
               <TableHead className="font-semibold text-xs">Riesgo</TableHead>
-              <TableHead className="font-semibold text-xs">Acción sugerida</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {intradayData.map((row, index) => (
               <TableRow key={index} className="hover:bg-muted/20">
-                <TableCell className="font-medium text-sm">{row.hora}</TableCell>
+                <TableCell className="font-medium text-sm">
+                  {row.hora}
+                </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-1">
                     {row.forecastTrend === "down" ? (
@@ -169,20 +174,11 @@ export function IntradayDetail() {
                 <TableCell>
                   <RiskBadge risk={row.riesgo} />
                 </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="h-auto py-1 px-2 text-[10px] whitespace-pre-line text-left leading-tight bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
-                  >
-                    {row.accionSugerida}
-                  </Button>
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </CardContent>
     </Card>
-  )
+  );
 }
