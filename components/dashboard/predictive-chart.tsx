@@ -1,8 +1,14 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 import {
   ComposedChart,
   Line,
@@ -12,7 +18,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from "recharts"
+} from "recharts";
+import { List } from "lucide-react";
 
 const forecastData = [
   { period: "1. Lune", actual: 550, forecast: 520, accuracy: 94 },
@@ -22,28 +29,33 @@ const forecastData = [
   { period: "7.0s", actual: 540, forecast: 555, accuracy: 97 },
   { period: "5.0s", actual: 520, forecast: 510, accuracy: 98 },
   { period: "7.0o", actual: 550, forecast: 560, accuracy: 98 },
-]
+];
 
 const projectionData = {
   asaEsperado: { value: "67s", change: "+15s" },
   backlog: { value: "372", label: "Llamadas", change: "+72" },
   requerimiento: { value: "178", label: "Agentes", change: "+8" },
-}
+};
 
 export function PredictiveChart() {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border-0 shadow-sm h-full">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold">Inteligencia Predictiva</CardTitle>
-          <Select defaultValue="iveitern">
+          <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center">
+            <List className="h-3 w-3 text-primary" />
+          </div>
+          <CardTitle className="text-lg font-semibold">
+            Inteligencia Predictiva
+          </CardTitle>
+          <Select defaultValue="Intervalo">
             <SelectTrigger className="w-[120px] h-8">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="iveitern">Ivéitern</SelectItem>
-              <SelectItem value="dia">Día</SelectItem>
-              <SelectItem value="mes">Mes</SelectItem>
+              <SelectItem value="Intervalo">Intervalo</SelectItem>
+              <SelectItem value="Día">Día</SelectItem>
+              <SelectItem value="Mes">Mes</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -56,7 +68,11 @@ export function PredictiveChart() {
             <div className="h-[180px]">
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart data={forecastData}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    vertical={false}
+                    stroke="#E5E7EB"
+                  />
                   <XAxis
                     dataKey="period"
                     axisLine={false}
@@ -86,7 +102,12 @@ export function PredictiveChart() {
                       borderRadius: "8px",
                     }}
                   />
-                  <Bar yAxisId="left" dataKey="actual" fill="#0F0F72" radius={[4, 4, 0, 0]} />
+                  <Bar
+                    yAxisId="left"
+                    dataKey="actual"
+                    fill="#0F0F72"
+                    radius={[4, 4, 0, 0]}
+                  />
                   <Line
                     yAxisId="right"
                     type="monotone"
@@ -113,14 +134,23 @@ export function PredictiveChart() {
 
           {/* Projection */}
           <div>
-            <p className="text-sm font-medium mb-3">Proyección Próxima Ventana (2-4h)</p>
+            <p className="text-sm font-medium mb-3">
+              Proyección Próxima Ventana (2-4h)
+            </p>
             <div className="space-y-4">
               <div className="p-4 bg-muted/50 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">ASA Esperado</span>
+                  <span className="text-sm text-muted-foreground">
+                    ASA Esperado
+                  </span>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold">{projectionData.asaEsperado.value}</span>
-                    <Badge variant="secondary" className="bg-yellow-100 text-yellow-700">
+                    <span className="text-2xl font-bold">
+                      {projectionData.asaEsperado.value}
+                    </span>
+                    <Badge
+                      variant="secondary"
+                      className="bg-yellow-100 text-yellow-700"
+                    >
                       {projectionData.asaEsperado.change}
                     </Badge>
                   </div>
@@ -130,9 +160,16 @@ export function PredictiveChart() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Backlog</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold">{projectionData.backlog.value}</span>
-                    <span className="text-sm text-muted-foreground">{projectionData.backlog.label}</span>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                    <span className="text-2xl font-bold">
+                      {projectionData.backlog.value}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      {projectionData.backlog.label}
+                    </span>
+                    <Badge
+                      variant="secondary"
+                      className="bg-blue-100 text-blue-700"
+                    >
                       {projectionData.backlog.change}
                     </Badge>
                   </div>
@@ -140,11 +177,20 @@ export function PredictiveChart() {
               </div>
               <div className="p-4 bg-muted/50 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Requerimiento de Agentes</span>
+                  <span className="text-sm text-muted-foreground">
+                    Requerimiento de Agentes
+                  </span>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold">{projectionData.requerimiento.value}</span>
-                    <span className="text-sm text-muted-foreground">{projectionData.requerimiento.label}</span>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                    <span className="text-2xl font-bold">
+                      {projectionData.requerimiento.value}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      {projectionData.requerimiento.label}
+                    </span>
+                    <Badge
+                      variant="secondary"
+                      className="bg-blue-100 text-blue-700"
+                    >
                       {projectionData.requerimiento.change}
                     </Badge>
                   </div>
@@ -155,5 +201,5 @@ export function PredictiveChart() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
